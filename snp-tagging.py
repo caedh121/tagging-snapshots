@@ -37,10 +37,10 @@ for region in regions:
             for tags in volume_tags:
                 if tags["Key"] == 'Customer':
                     customer = tags["Value"]
-                    print(Customer)
+                    print(customer)
                 if tags["Key"] == 'Environment':
                     environment = tags["Value"]
-                    print(Environment)
+                    print(environment)
                 if tags["Key"] == 'Application':
                     application = tags["Value"]
                     print(application)
