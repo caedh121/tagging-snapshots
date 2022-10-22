@@ -20,10 +20,52 @@ for region in regions:
             volume_info = ec2_client.describe_volumes(VolumeIds=[volume_id])
             volume_tags = volume_info['Volumes'][0]['Tags']
             print(volume_tags)
-             tag_snp = ec2_client.create_tags(
+            '''
+            To carry over all tags from the volume use the code below:
+            '''
+            tag-snp = client.create_tags(
+                Resources=[
+                   snap-id,
+                ],
+                Tags=volume-tags
+            )
+            '''
+            The code below only carries over specific tags and their values
+            Uncomment and adjust to your scenario
+            '''
+            '''
+            for tags in volume_tags:
+                if tags["Key"] == 'Customer':
+                    customer = tags["Value"]
+                    print(Customer)
+                if tags["Key"] == 'Environment':
+                    environment = tags["Value"]
+                    print(Environment)
+                if tags["Key"] == 'Application':
+                    application = tags["Value"]
+                    print(application)
+            tag_snp = ec2_client.create_tags(
                 Resources=[
                     snap_id,
                 ],
-                Tags=volume_tags
-             )
-             print(tag_snp)
+                Tags=[
+                     {
+                         'Key': 'Customer',
+                         'Value': customer,
+                     },
+                     {
+                         'Key': 'Environment',
+                         'Value': environment,
+                     },
+                     {
+                         'Key': 'Application',
+                         'Value': application,
+                     },
+                     {
+                         'Key': 'Taggedby',
+                         'Value': 'snp-tagging',
+                     },
+                 ],
+                )
+            print(tag_snp)
+            '''
