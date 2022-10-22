@@ -1,5 +1,5 @@
-# tagging-snapshots
-To tag snapshots after their originating volumes tags
+# Tagging AWS EC2 snapshots
+To tag AWS EC2 snapshots after their originating volumes tags
 
 Run this Python3 simple script to pass the volumes tags to their snapshots:\
  1- It gets all the snapshots ids in each listed region\
