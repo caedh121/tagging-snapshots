@@ -1,4 +1,15 @@
 import boto3
+'''
+Credentials 
+Use the code below to inherit aws credentials from ~/.aws/credentials
+session = boto3.Session(profile_name="default")
+
+Use the code below to inherit aws credentials from attached instance role
+from boto3.session import Session
+
+To run as an AWS Lambda function there is no need to use credentials,
+as they are provided by Lambda
+'''
 
 session = boto3.Session(profile_name="default")
 regions = ['us-east-1', 'ap-southeast-1']
