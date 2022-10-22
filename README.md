@@ -11,5 +11,5 @@ If the credentials are role based then:\
  1- Search and attach the following AWS managed policies to the role:\
      - AmazonEC2ReadOnlyAccess\
      - AWSLambdaBasicExecutionRole\
- 2- Create a policy with the foloowing permissions:\
+ 2- Create and attach to the role a customer or inline policy with the following permissions:\
      {"Version": "2012-10-17", "Statement":[{"Sid": "VisualEditor0", "Effect": "Allow", "Action":["ec2:DeleteTags","ec2:CreateTags"], "Resource": "*"}]}
