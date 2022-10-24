@@ -64,38 +64,44 @@ for region in regions:
                 if tags["Key"] == 'Customer':
                     customer = tags["Value"]
                     print(customer)
+                    tag_snp = ec2_client.create_tags(
+                        Resources=[
+                            snap_id,
+                        ],
+                        Tags=[
+                            {
+                                'Key': 'Customer',
+                                'Value': customer,
+                            },
+                            {
+                                'Key': 'Taggedby',
+                                'Value': 'snp-tagging',
+                            },
+                             ])
                 if tags["Key"] == 'Environment':
                     environment = tags["Value"]
                     print(environment)
+                    tag_snp = ec2_client.create_tags(
+                        Resources=[
+                            snap_id,
+                        ],
+                        Tags=[
+                            {
+                                'Key': 'Environment',
+                                'Value': environment,
+                            }, ])
                 if tags["Key"] == 'Application':
                     application = tags["Value"]
                     print(application)
-            """
-            tag_snp = ec2_client.create_tags(
-                Resources=[
-                    snap_id,
-                ],
-                Tags=[
-                     {
-                         'Key': 'Customer',
-                         'Value': customer,
-                     },
-                     {
-                         'Key': 'Environment',
-                         'Value': environment,
-                     },
-                     {
-                         'Key': 'Application',
-                         'Value': application,
-                     },
-                     {
-                         'Key': 'Taggedby',
-                         'Value': 'snp-tagging',
-                     },
-                 ],
-                )
-            """
-            print("tag this one")
+                    tag_snp = ec2_client.create_tags(
+                        Resources=[
+                            snap_id,
+                        ],
+                        Tags=[
+                            {
+                                'Key': 'Application',
+                                'Value': application,
+                            }, ])
 
         else:
             orphan_snp.append(snap_id)
