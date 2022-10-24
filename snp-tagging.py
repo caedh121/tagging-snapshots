@@ -107,7 +107,21 @@ for region in regions:
             orphan_snp.append(snap_id)
             orphan_vol_size = snap['VolumeSize']
             orphan_snp_total_size.append(orphan_vol_size)
-
+            if volume_id not in volume_ids:
+                tag_snp = ec2_client.create_tags(
+                    Resources=[
+                        snap_id,
+                    ],
+                    Tags=[
+                        {
+                            'Key': 'isVolumeOrphan',
+                            'Value': 'yes',
+                        },
+                        {
+                            'Key': 'Taggedby',
+                            'Value': 'snp-tagging',
+                        },
+                    ])
 print('Orphans: ',len(orphan_snp))
 print('Non Orphans: ',len(non_orphan_snp))
 print('All: ',len(all_snp))
